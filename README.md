@@ -46,13 +46,13 @@ eisenhower-matrix.jpg  изображение в шапке
 3. Работайте в отдельной ветке своего форка, `main` не изменяйте.
 4. Pull Request открывайте **в `main` своего форка**, а не в этот репозиторий. Проверяется ссылка на этот Pull Request.
 
+Порядок выполнения, требования и критерии оценки описаны в [задании](https://github.com/rolling-scopes-school/tasks/blob/master/fullstack-engineering/tasks/clean-code/README.md).
+
 ## Автоматическая проверка
 
 В репозитории есть workflow `.github/workflows/check.yml`. Он запускается на каждый Pull Request и проверяет, что ESLint, Prettier и Husky настроены, `node_modules` не закоммичен, а код проходит линтер и форматтер. Пока инструменты не настроены, проверка красная: это ожидаемо. Причина каждой ошибки написана на русском прямо на странице PR.
 
 Изменять или удалять этот файл нельзя: ревьюер сверяет его с оригиналом.
-
-Порядок выполнения, требования и критерии оценки описаны в [задании](https://github.com/rolling-scopes-school/tasks/blob/master/fullstack-engineering/tasks/clean-code/README.md).
 
 ## Происхождение
 
