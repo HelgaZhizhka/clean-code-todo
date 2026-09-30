@@ -50,3 +50,5 @@ eisenhower-matrix.jpg  изображение в шапке
 ## Происхождение
 
 Репозиторий основан на [rolling-scopes-school/clean-code-s1e1](https://github.com/rolling-scopes-school/clean-code-s1e1), стартовом проекте задания Clean Code S1E1 первого этапа RS School. Код приложения сохранён без изменений.
+
+<!-- test -->
