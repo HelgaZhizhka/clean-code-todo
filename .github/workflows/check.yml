@@ -32,8 +32,14 @@ jobs:
             exit 1
           fi
 
-          any_of eslint.config.js eslint.config.mjs eslint.config.cjs \
-            || error "Нет eslint.config.js. ESLint не настроен или конфиг в устаревшем формате .eslintrc, который ESLint больше не читает."
+          if any_of eslint.config.js eslint.config.mjs eslint.config.cjs; then
+            for rule in no-var prefer-const no-console; do
+              cat eslint.config.js eslint.config.mjs eslint.config.cjs 2>/dev/null | grep -q "$rule" \
+                || error "В конфиге ESLint нет правила $rule. Задание требует правила no-var, prefer-const и no-console."
+            done
+          else
+            error "Нет eslint.config.js. ESLint не настроен или конфиг в устаревшем формате .eslintrc, который ESLint больше не читает."
+          fi
 
           any_of .prettierrc .prettierrc.json .prettierrc.yaml .prettierrc.yml .prettierrc.json5 \
                  .prettierrc.js .prettierrc.mjs .prettierrc.cjs .prettierrc.toml \
