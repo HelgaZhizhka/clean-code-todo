@@ -35,7 +35,7 @@ jobs:
 
           if any_of eslint.config.js eslint.config.mjs eslint.config.cjs; then
             for rule in no-var prefer-const no-console; do
-              cat eslint.config.js eslint.config.mjs eslint.config.cjs 2>/dev/null | grep -q "$rule" \
+              grep -q "$rule" eslint.config.js eslint.config.mjs eslint.config.cjs 2>/dev/null \
                 || error "В конфиге ESLint нет правила $rule. Задание требует правила no-var, prefer-const и no-console."
             done
           else
