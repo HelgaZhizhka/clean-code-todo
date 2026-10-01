@@ -79,12 +79,30 @@ jobs:
 
           exit $fail
 
-      - name: Установить зависимости
+      - name: Определить пакетный менеджер
+        shell: bash
         run: |
-          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          if [ -f pnpm-lock.yaml ]; then
+            npm install -g pnpm >/dev/null
+            echo "PM=pnpm" >> "$GITHUB_ENV"
+          elif [ -f yarn.lock ]; then
+            npm install -g yarn >/dev/null
+            echo "PM=yarn" >> "$GITHUB_ENV"
+          else
+            echo "PM=npm" >> "$GITHUB_ENV"
+          fi
+
+      - name: Установить зависимости
+        shell: bash
+        run: |
+          case "$PM" in
+            pnpm) pnpm install ;;
+            yarn) yarn install ;;
+            *) if [ -f package-lock.json ]; then npm ci; else npm install; fi ;;
+          esac
 
       - name: ESLint
-        run: npm run lint
+        run: $PM run lint
 
       - name: Prettier
-        run: npx prettier --check .
+        run: ./node_modules/.bin/prettier --check .
